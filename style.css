@@ -1,0 +1,72 @@
+body  {	
+	min-width: 400px; 
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
+}
+form  { display: table; }
+p     { display: table-row; }
+
+label { 
+display: table-cell; 
+padding: 2px;
+margin: 2px;
+color: rgb(35, 81, 141);
+font-size: 16px;
+font-weight: 600;
+font-family: Verdana, Geneva, sans-serif;
+}
+
+
+button {
+	border: 1px solid transparent;
+    border-radius: 4px;
+}
+input { 
+display: table-cell; width="100%";
+padding: 2px;
+margin: 2px;
+color: rgb(35, 81, 141);
+font-size: 16px;
+font-weight: 600;
+font-family: Verdana, Geneva, sans-serif;
+}
+
+h1{
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
+
+	border-bottom: 1px solid #F0F0F0;
+	font-size: 24px;
+	font-weight: normal;
+	margin: 4px;
+	padding: 4x;
+	text-align: center;
+	text-shadow: white 0px 1px 1px;
+}
+
+#notify {
+width: 400px;
+height: 60px;
+padding: 5px;
+color: rgb(96, 144, 206);
+font-size: 16px;
+font-weight: 600;
+font-family: Verdana, Geneva, sans-serif;
+font-style: inherit;
+text-decoration: inherit;
+text-align: center;
+line-height: 1.15em;
+}
+
+#mounts {
+width: 400px;
+height: 120px;
+padding: 5px;
+color: rgb(96, 144, 206);
+font-size: 16px;
+font-weight: 300;
+font-family: Verdana, Geneva, sans-serif;
+font-style: inherit;
+text-decoration: inherit;
+text-align: center;
+line-height: 1.15em;
+}
+

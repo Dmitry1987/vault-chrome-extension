@@ -1,12 +1,12 @@
-body  {	
-	min-width: 400px; 
+body  {
+	min-width: 400px;
 	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
 }
 form  { display: table; }
 p     { display: table-row; }
 
-label { 
-display: table-cell; 
+label {
+display: table-cell;
 padding: 2px;
 margin: 2px;
 color: rgb(35, 81, 141);
@@ -20,7 +20,7 @@ button {
 	border: 1px solid transparent;
     border-radius: 4px;
 }
-input { 
+input {
 display: table-cell; width="100%";
 padding: 2px;
 margin: 2px;

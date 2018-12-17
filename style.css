@@ -21,7 +21,8 @@ button {
     border-radius: 4px;
 }
 input {
-display: table-cell; width="100%";
+display: table-cell;
+width: "100%";
 padding: 2px;
 margin: 2px;
 color: rgb(35, 81, 141);
@@ -54,6 +55,28 @@ font-style: inherit;
 text-decoration: inherit;
 text-align: center;
 line-height: 1.15em;
+}
+
+#secretList {
+padding: 5px;
+color: rgb(96, 144, 206);
+font-size: 16px;
+font-weight: 600;
+font-family: Verdana, Geneva, sans-serif;
+font-style: inherit;
+text-decoration: inherit;
+/* text-align: center; */
+line-height: 2em;
+}
+
+#secretList ul {
+  margin: 0;
+  list-style: none;
+}
+
+#disabled {
+	text-decoration: line-through;
+	color: red;
 }
 
 #mounts {

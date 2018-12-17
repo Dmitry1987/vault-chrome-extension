@@ -8,13 +8,12 @@
 var vaultServerAdress, vaultToken, secretList, currentUrl
 
 function mainLoaded() {
-  var notify = document.getElementById('resultList')
+  var resultList = document.getElementById('resultList')
 
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
       var tab = tabs[tabIndex]
       if (tab.url) {
-        console.log(tab)
         currentUrl = tab.url
       }
     }
@@ -36,7 +35,7 @@ function mainLoaded() {
     if (!secretList) {
       secretList = []
     }
-    notify.textContent = ''
+    resultList.textContent = ''
 
     secretList.forEach(secret => {
       jQuery.ajax({
@@ -51,14 +50,8 @@ function mainLoaded() {
             var patternMatches = pattern.test(currentUrl)
             console.log(element + ' - ' + currentUrl + ' - ' + patternMatches)
             if (patternMatches) {
-              var item = document.createElement('li')
-              var credentials = getCredentials(vaultServerAdress + '/v1/secret/data/vaultPass/' + secret + element)
-              console.log(credentials)
-              item.addEventListener('click', function () {
-                fillCredentialsInBrowser(credentials.username, credentials.password)
-              })
-              item.appendChild(document.createTextNode(element + ' - ' + JSON.stringify(credentials)))
-              notify.appendChild(item)
+              getCredentials(vaultServerAdress + '/v1/secret/data/vaultPass/' + secret + element).then((credentials) =>
+                addCredentials(credentials.data.data, element, resultList))
             }
           })
         },
@@ -70,25 +63,33 @@ function mainLoaded() {
   })
 }
 
-function getCredentials(urlPath) {
-  // TODO: Figure out a way to make this async without breaking everything
-  console.debug('Looking for credentials in ' + urlPath)
-  var result = null
-  jQuery.ajax({
-    type: 'GET',
-    url: urlPath,
-    headers: { 'X-Vault-Token': vaultToken },
-    contents: 'json',
-    dataType: 'json',
-    async: false,
-    success: function (data) {
-      result = data.data.data
-    },
-    error: function (data) {
-      console.error('ERROR accessing ' + urlPath + ': ' + JSON.stringify(data))
-    }
+function addCredentials(credentials, credentialName, list) {
+  var item = document.createElement('li')
+  console.log(credentials)
+  item.addEventListener('click', function () {
+    fillCredentialsInBrowser(credentials.username, credentials.password)
   })
-  return result
+  item.appendChild(document.createTextNode(credentialName + ' - ' + JSON.stringify(credentials)))
+  list.appendChild(item)
+}
+
+async function getCredentials(urlPath) {
+  console.debug('Looking for credentials in ' + urlPath)
+  let result
+
+  try {
+    result = await jQuery.ajax({
+      type: 'GET',
+      url: urlPath,
+      headers: { 'X-Vault-Token': vaultToken },
+      contents: 'json',
+      dataType: 'json'
+    })
+
+    return result
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 function fillCredentialsInBrowser(username, password) {

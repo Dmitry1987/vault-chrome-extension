@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener(
       console.debug('Will fill credentials for \n username = ' + request.username)
       var inputs = document.getElementsByTagName('input')
       var passwordNode, usernameNode
-      for (var i = 0; i < inputs.length; i++) {
+      for (let i = 0; i < inputs.length; i++) {
         if (inputs[i].type === 'password') {
           passwordNode = inputs[i]
         }
@@ -17,11 +17,26 @@ chrome.runtime.onMessage.addListener(
         console.error('Could not find passwordNode')
         return
       }
-      var testNode = passwordNode.previousSibling
-      for (; ; testNode = testNode.previousSibling) {
-        if (testNode.tagName && testNode.tagName.toUpperCase() === 'input'.toUpperCase()) {
+
+      for (let testNode = passwordNode.previousSibling; testNode !== null; testNode = testNode.previousSibling) {
+        if (testNode && testNode.tagName && testNode.tagName.toUpperCase() === 'INPUT') {
           usernameNode = testNode
           break
+        }
+      }
+
+      if (usernameNode !== null) {
+        for (let form = passwordNode.parentElement; form !== null; form = form.parentElement) {
+          if (form && form.tagName && form.tagName.toUpperCase() === 'FORM') {
+            let inputElements = form.getElementsByTagName('input')
+            for (let i = 0; i < inputElements.length; i++) {
+              if (inputElements[i].type === 'text') {
+                usernameNode = inputElements[i]
+                break
+              }
+            }
+            break
+          }
         }
       }
 

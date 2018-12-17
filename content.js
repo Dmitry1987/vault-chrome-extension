@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(
 
       // Find the username field next to the password field
       for (let testNode = passwordNode.previousSibling; testNode !== null; testNode = testNode.previousSibling) {
-        if (testNode && testNode.tagName && testNode.tagName.toUpperCase() === 'INPUT') {
+        if (testNode && testNode.tagName && testNode.tagName === 'INPUT') {
           usernameNode = testNode
           break
         }
@@ -30,7 +30,7 @@ chrome.runtime.onMessage.addListener(
       // Go upwards until we find the form node - then check all input nodes
       if (usernameNode !== null) {
         for (let form = passwordNode.parentElement; form !== null; form = form.parentElement) {
-          if (form && form.tagName && form.tagName.toUpperCase() === 'FORM') {
+          if (form && form.tagName && form.tagName === 'FORM') {
             let inputElements = form.getElementsByTagName('input')
             for (let i = 0; i < inputElements.length; i++) {
               if (inputElements[i].type === 'text' || inputElements[i].type === 'email') {

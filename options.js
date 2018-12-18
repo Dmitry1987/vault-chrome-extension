@@ -45,7 +45,7 @@ function querySecrets(vaultServerAdress) {
     type: 'LIST',
     url: vaultServerAdress + '/v1/secret/metadata/vaultPass',
     headers: { 'X-Vault-Token': vaultToken },
-    contents: 'json',
+    contentType: 'application/json',
     dataType: 'json',
     success: function (data) {
       // notify.textContent = 'Available keys ' + JSON.stringify(data.data.keys)
@@ -107,7 +107,7 @@ function secretChanged() {
       type: 'LIST',
       url: vaultServerAdress + '/v1/secret/metadata/vaultPass/' + checkbox.name,
       headers: { 'X-Vault-Token': vaultToken },
-      contents: 'json',
+      contentType: 'application/json',
       dataType: 'json',
       success: function (data) {
         chrome.storage.sync.get(['secrets'], function (result) {

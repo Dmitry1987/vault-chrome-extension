@@ -42,7 +42,7 @@ function mainLoaded() {
         type: 'LIST',
         url: vaultServerAdress + '/v1/secret/metadata/vaultPass/' + secret,
         headers: { 'X-Vault-Token': vaultToken },
-        contents: 'json',
+        contentType: 'application/json',
         dataType: 'json',
         success: function (data) {
           data.data.keys.forEach(element => {
@@ -82,7 +82,7 @@ async function getCredentials(urlPath) {
       type: 'GET',
       url: urlPath,
       headers: { 'X-Vault-Token': vaultToken },
-      contents: 'json',
+      contentType: 'application/json',
       dataType: 'json'
     })
 

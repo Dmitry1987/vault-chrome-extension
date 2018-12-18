@@ -9,22 +9,24 @@
 // invoked after user clicks "login to vault" button, if all fields filled in, and URL passed regexp check.
 function authToVault(vaultServer, username, password, authMount) {
   var notify = document.getElementById('notify')
-  notify.textContent = 'Login attempt: ' + vaultServer + '/v1/auth/' + authMount + '/login/' + username
+  console.debug('Login attempt: ' + vaultServer + '/v1/auth/' + authMount + '/login/' + username)
   jQuery.ajax({
     type: 'POST',
     url: vaultServer + '/v1/auth/' + authMount + '/login/' + username,
-    data: JSON.stringify({ password: password }),
-    contents: 'json',
+    data: JSON.stringify({ 'password': password }),
+    contentType: 'application/json',
     dataType: 'json',
     success: function (data) {
+      console.debug('AUTH success')
       notify.textContent = 'AUTH SUCCESS, token: ' + data.auth.client_token
       vaultToken = data.auth.client_token
       chrome.storage.local.set({ 'vaultToken': data.auth.client_token }, function () { })
-      console.log(data)
+      console.debug(data)
       querySecrets(vaultServer)
       // TODO: Use user token to generate app token with 20h validity - then use THAT token
     },
     error: function (data) {
+      console.debug('AUTH fail', data)
       notify.textContent = 'ERROR: ' + JSON.stringify(data)
     }
   })

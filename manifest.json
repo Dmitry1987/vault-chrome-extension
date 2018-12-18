@@ -8,7 +8,16 @@
     "default_popup": "popup.html",
     "default_title": "VaultPass"
   },
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "vaultpass",
+      "strict_min_version": "42.0"
+    }
+  },
+  "content_security_policy": "script-src 'self'; object-src 'self'",
   "content_scripts": [
     {
       "matches": [
@@ -23,6 +32,8 @@
   "permissions": [
     "activeTab",
     "storage",
-    "http://*/"
+    "clipboardWrite",
+    "http://*/*",
+    "https://*/*"
   ]
 }

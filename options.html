@@ -1,20 +1,41 @@
 <!doctype html>
-<html>
-  <head>
-    <title>Vault for Chrome: Settings</title>
-    <script src="options.js"></script>
-  </head>
-  <body>
-    <br />
-	        <label for="serverBox" id="serverBoxLabel">Vault server URL: </label>
-	        <input type="text" name="server" id="serverBox" />
-	        <label for="loginBox" id="loginBoxLabel">Username:</label>
-	        <input type="text" name="login" id="loginBox" />
-	        <label for="passBox" id="passBoxLabel">Password:</label>
-	        <input type="password" name="pass" id="passBox" />
-			<br /><br />
-			<input type="submit" value="Login to Vault" id="authButton"/>
-      <br /><br />
-      <div id="notify" align="center"></div>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Vault for Chrome: Settings</title>
+  <script src="common.js"></script>
+  <script src="options.js"></script>
+  <script src="jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="bootstrap.min.js"></script>
+</head>
+
+<body>
+  <br />
+  <div id="login" align="center">
+    <label for="serverBox" id="serverBoxLabel">Vault server URL: </label>
+    <input type="text" name="server" id="serverBox" />
+    <label for="loginBox" id="loginBoxLabel">Username:</label>
+    <input type="text" name="login" id="loginBox" />
+    <label for="passBox" id="passBoxLabel">Password:</label>
+    <input type="password" name="pass" id="passBox" />
+    <label for="authMount" id="authMountLabel">Auth Mountpoint:</label>
+    <select name="authMount" id="authMount">
+      <option value="ldap">ldap</option>
+      <option value="userpass">userpass</option>
+    </select>
+    <br /><br />
+    <input type="submit" value="Login to Vault" id="authButton" />
+    <br /><br />
+  </div>
+  <div id="logout" align="center" style="visibility: hidden;">
+    <input type="submit" value="Logout" id="logoutButton" />
+  </div>
+
+  <div id="secretList"></div>
+  <div id="notify" align="center"></div>
+</body>
+
 </html>

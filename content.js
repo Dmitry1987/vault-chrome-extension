@@ -5,7 +5,6 @@
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     if (request.message === 'fill_creds') {
-      console.debug('Will fill credentials for \n username = ' + request.username)
       var inputs = document.getElementsByTagName('input')
       var passwordNode, usernameNode
       for (let i = 0; i < inputs.length; i++) {

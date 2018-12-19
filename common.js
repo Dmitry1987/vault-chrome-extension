@@ -17,16 +17,13 @@ function authToVault(vaultServer, username, password, authMount) {
     contentType: 'application/json',
     dataType: 'json',
     success: function (data) {
-      console.debug('AUTH success')
       notify.textContent = 'AUTH SUCCESS, token: ' + data.auth.client_token
       vaultToken = data.auth.client_token
       chrome.storage.local.set({ 'vaultToken': data.auth.client_token }, function () { })
-      console.debug(data)
       querySecrets(vaultServer)
       // TODO: Use user token to generate app token with 20h validity - then use THAT token
     },
     error: function (data) {
-      console.debug('AUTH fail', data)
       notify.textContent = 'ERROR: ' + JSON.stringify(data)
     }
   })
@@ -43,7 +40,7 @@ function checkURL(value) {
 
 function authButtonClick() {
   var notify = document.getElementById('notify')
-  console.log('AUTH initiated!')
+  console.debug('AUTH initiated!')
   // get inputs from form elements, server URL, login and password
   var vaultServer = document.getElementById('serverBox')
   var login = document.getElementById('loginBox')

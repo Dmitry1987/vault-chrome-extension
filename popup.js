@@ -48,7 +48,6 @@ function mainLoaded() {
           data.data.keys.forEach(element => {
             var pattern = new RegExp(element)
             var patternMatches = pattern.test(currentUrl)
-            console.log(element + ' - ' + currentUrl + ' - ' + patternMatches)
             if (patternMatches) {
               getCredentials(vaultServerAdress + '/v1/secret/data/vaultPass/' + secret + element).then((credentials) =>
                 addCredentials(credentials.data.data, element, resultList))
@@ -65,7 +64,6 @@ function mainLoaded() {
 
 function addCredentials(credentials, credentialName, list) {
   var item = document.createElement('li')
-  console.log(credentials)
   item.addEventListener('click', function () {
     fillCredentialsInBrowser(credentials.username, credentials.password)
   })
@@ -85,7 +83,6 @@ async function getCredentials(urlPath) {
       contentType: 'application/json',
       dataType: 'json'
     })
-
     return result
   } catch (error) {
     console.error(error)
@@ -97,9 +94,7 @@ function fillCredentialsInBrowser(username, password) {
     for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
       var tab = tabs[tabIndex]
       if (tab.url) {
-        console.log(tab)
         currentUrl = tab.url
-
         chrome.tabs.sendMessage(tab.id, { message: 'fill_creds', username: username, password: password }, function () { })
       }
     }

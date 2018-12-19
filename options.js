@@ -118,12 +118,11 @@ function secretChanged() {
           if (secretList.indexOf(checkbox.name > -1)) {
             secretList.push(checkbox.name)
           }
-          console.log(secretList)
           chrome.storage.sync.set({ 'secrets': secretList }, function () { })
         })
       },
       error: function (data) {
-        console.log('ERROR accessing this field: ' + JSON.stringify(data))
+        console.error('ERROR accessing this field: ' + JSON.stringify(data))
         checkbox.checked = false
         checkbox.disabled = true
         checkbox.parentElement.style = 'text-decoration:line-through; color: red;'
@@ -139,8 +138,6 @@ function secretChanged() {
       for (let index = secretList.indexOf(checkbox.name); index > -1; index = secretList.indexOf(checkbox.name)) {
         secretList.splice(index, 1)
       }
-
-      console.log(secretList)
       chrome.storage.sync.set({ 'secrets': secretList }, function () { })
     })
   }

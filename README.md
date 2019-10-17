@@ -1,8 +1,10 @@
-# Big news everyone!
-As this plugin appears to be in google top results by "chrome vault extension" search, I plan to re-write it into a proper Vue.js nice looking plugin with minimal but working features, so that the open source community can extend it, and the plugin will look professional, not like it looks now :) .   
-I never expected it to be ranked in search but if this happened by mistake (Google gotta upgrade their ranking algorithms! This repo was not updated in like 3 years, and has nothing more that a few initial commits!)  so now I kinda feel guilty I rank well and people land on this page looking for a good plugin. So I feel an obligation to provide the service =) .
+# The new project location
+This project was forked and is evolving at this address: https://github.com/mulbc/vaultPass
 
-Please stay tuned for updates if you need this plugin.
+This repository is old, please follow the development process at the link above. 
+You can also install the plugin from the Chrome web store.
+
+Thanks @mulbc for working on this plugin!
 
 
 # vault-chrome-extension
